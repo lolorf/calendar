@@ -6,6 +6,7 @@ body { font-family: Arial, sans-serif; }
 .day, .dullday { display: flex; text-align: top; align-items: top; justify-content: left; border: 1px solid #ddd; height: 60px;}
 .weekday { display: flex; align-items: center; background-color: #D3D3D3; justify-content: center; border: 1px solid #ddd; padding: 20px; }
   #calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+#calendarweeks  { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
   .event {  width:60px; background-color: #add8e6; padding: 3px; margin-top:20px}
         table {
             width: 100%;
@@ -72,7 +73,7 @@ background-color: red;
   <button onclick="changeMonth(-1)" class="month-button">&#8592;</button>
   <button onclick="changeMonth(1)" class="month-button">&#8594;</button>
 </div>
-<div id="calendar"> 
+<div id="calendarweeks"> 
   <div class="weekday">Пн</div>
   <div class="weekday">Вт</div>
   <div class="weekday">Ср</div>
@@ -81,7 +82,7 @@ background-color: red;
   <div class="weekday">Сб</div>
   <div class="weekday">Вс</div>
 </div>
-
+<div id="calendar"></div>
 <div id="hoverForm" class="hover-form">
 
       <label for="fname">Добавить событие</label><br>

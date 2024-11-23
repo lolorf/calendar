@@ -61,7 +61,7 @@ background-color: red;
     top: 90%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%) }
+    transform: translate(-50%, -50%)
   }
     </style>
 </head>
@@ -86,7 +86,7 @@ background-color: red;
 <div id="hoverForm" class="hover-form">
 
       <label for="fname">Добавить событие</label><br>
-      <input class="tecst" type="text" id="eventInput" placeholder="Гойда">
+      <input class="tecst" type="text" id="eventInput" placeholder="Событие">
       <input class="btn" onclick="addEvent()" value="Ок"></input>
       <input class="btnexit" onclick="document.getElementById('hoverForm').style.display='none'" value="Закрыть"></input>
 
@@ -102,13 +102,43 @@ function addEvent() {
       document.getElementById(impnum).appendChild(eventDiv);
     }
 document.getElementById('hoverForm').style.display='none';
-  }
+}
 globalThis.monthpolarity = 0;
+yearpolarity = 0;
+lastmonthstatus = 0;
 function changeMonth(i){
     globalThis.monthpolarity += i;
     calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
     calconstruct();
+}
+function isitalreadyanewyear(month){
+  i = 0;
+  if (month >= 12){
+    while (month >= 12){
+      month += -12;
+    }
+    if (lastmonthstatus == 11 && month == 0){
+      yearpolarity += 1;
+    }else if (lastmonthstatus == 0 && month == 11){
+      yearpolarity += -1;
+    }
+    lastmonthstatus = month;
+    return(month);
+  } else if (month <= -1){
+    while (month <= -1){
+      month += 12;
+    }
+    if (lastmonthstatus == 11 && month == 0){
+      yearpolarity += 1;
+    }else if (lastmonthstatus == 0 && month == 11){
+      yearpolarity += -1;
+    }
+    lastmonthstatus = month;
+    return(month);
+  }else{
+    return(month);
+  }
 }
 calconstruct();
 function calconstruct(){
@@ -124,7 +154,7 @@ function getCurrentMonth() {
   ];
   var today = new Date();
   var monthIndex = today.getMonth();
-  document.getElementById('currentmonth').innerHTML = months[monthIndex + monthpolarity] + ' ' + todayear;
+  document.getElementById('currentmonth').innerHTML = months[isitalreadyanewyear(monthIndex + monthpolarity)] + ' ' + (todayear + yearpolarity);
 }
 function getFirstDayOfMonth() {
   var today = new Date();

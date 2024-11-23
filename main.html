@@ -114,6 +114,7 @@ function changeMonth(i){
 }
 function isitalreadyanewyear(month){
   i = 0;
+  alert(month);
   if (month >= 12){
     while (month >= 12){
       month += -12;
@@ -137,6 +138,7 @@ function isitalreadyanewyear(month){
     lastmonthstatus = month;
     return(month);
   }else{
+    lastmonthstatus = month;
     return(month);
   }
 }
